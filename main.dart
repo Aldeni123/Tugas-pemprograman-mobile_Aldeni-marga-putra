@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: _title,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text("Flutter Image"),
-        ),
-        body: Center(
-          child: Container(
-            width: 200,
-            height: 200,
-            padding: EdgeInsets.all(3),
-            child: Image(
-              image: NetworkImage(
-                  "https://pixabay.com/id/illustrations/bola-sepak-bola-olahraga-peluru-65471/"),
-            ),
-          ),
-        ),
+        appBar: AppBar(title: const Text(_title)),
+        body: const MyStatefulWidget(),
       ),
     );
   }
