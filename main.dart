@@ -1,19 +1,42 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  static const String _title = 'Flutter Code Sample';
-
+  final List<int> ColorCodes = <int>[500, 700, 900];
+  var bulan = ["Juni", "Juli", "Agustus"];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
       home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
-        body: const MyStatefulWidget(),
+        body: SafeArea(
+          child: Container(
+            color: Colors.blue,
+            child: ListView.separated(
+              padding: EdgeInsets.all(10),
+              itemCount: ColorCodes.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Container(
+                  height: 100,
+                  padding: EdgeInsets.all(10),
+                  color: Colors.amber[ColorCodes[index]],
+                  child: Text(
+                    bulan[index],
+                    style: TextStyle(
+                      fontSize: 29,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                );
+              },
+              separatorBuilder: (BuildContext conrext, int index) {
+                return Divider();
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
