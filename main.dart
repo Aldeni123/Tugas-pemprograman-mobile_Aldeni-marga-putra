@@ -1,139 +1,68 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyApp(),
-    ));
-
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+void main() {
+  runApp(MyApp());
 }
 
-class _MyAppState extends State<MyApp> {
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BelajarNavBar(),
+    );
+  }
+}
+
+class BelajarNavBar extends StatefulWidget {
+  @override
+  _BelajarNavBarState createState() => _BelajarNavBarState();
+}
+
+class _BelajarNavBarState extends State<BelajarNavBar> {
+  int _selectedNavbar = 0;
+
+  void _changeSelectedNavBar(int index) {
+    setState(() {
+      _selectedNavbar = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "ALDENI MARGA PUTRA",
-            style: new TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        title: Text("Aldeni marga putra"),
+      ),
+      body: Center(
+        child: Text("Tab Index yang aktif : $_selectedNavbar",
+            style: TextStyle(fontSize: 16)),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Beranda'),
           ),
-          backgroundColor: Colors.red,
-          centerTitle: true,
-        ),
-        //backgroundColor: Colors.blue[100],
-        body: Container(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20.0),
-            child: GridView.count(
-              crossAxisCount: 2,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.pink),
-                    child: Center(
-                      child: Text(
-                        "pink",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.green),
-                    child: Center(
-                      child: Text(
-                        "green",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.purple),
-                    child: Center(
-                      child: Text(
-                        "purple",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.yellow),
-                    child: Center(
-                      child: Text(
-                        "yellow",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.brown),
-                    child: Center(
-                      child: Text(
-                        "brown",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
-                        ),
-                        color: Colors.grey),
-                    child: Center(
-                      child: Text(
-                        "grey",
-                        style: TextStyle(
-                            fontSize: 24.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assignment),
+            title: Text('Pesanan'),
           ),
-        ));
+          BottomNavigationBarItem(
+            icon: Icon(Icons.mail),
+            title: Text('Inbox'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Akun'),
+          ),
+        ],
+        currentIndex: _selectedNavbar,
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: _changeSelectedNavBar,
+      ),
+    );
   }
 }
